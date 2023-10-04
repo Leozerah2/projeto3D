@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Image Gallery</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Inclua o link para a biblioteca Font Awesome para os ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="box">
+            <span style="--i:1;"><img src="imagens/image1.jpg" alt="Imagem 1"></span>
+            <span style="--i:2;"><img src="imagens/image2.jpg" alt="Imagem 2"></span>
+            <span style="--i:3;"><img src="imagens/image3.jpg" alt="Imagem 3"></span>
+            <span style="--i:4;"><img src="imagens/image4.jpg" alt="Imagem 4"></span>
+            <span style="--i:5;"><img src="imagens/image5.jpg" alt="Imagem 5"></span>
+            <span style="--i:6;"><img src="imagens/image6.jpg" alt="Imagem 6"></span>
+            <span style="--i:7;"><img src="imagens/image7.jpg" alt="Imagem 7"></span>
+            <span style="--i:8;"><img src="imagens/image8.jpg" alt="Imagem 8"></span>
+        </div>
+        <div class="btns">
+            <div class="btn prev"><i class="<"></i></div>
+            <div class="btn next"><i class=">"></i></div>
+        </div>
+    <script>
+        const prevButton = document.querySelector('.prev');
+        const nextButton = document.querySelector('.next');
+        const box = document.querySelector('.box');
+        let degrees = 0;
+
+        prevButton.addEventListener('click', function() {
+            degrees -= 45; // Inverte para sentido horário
+            box.style.transform = `perspective(1000px) rotateY(${degrees}deg)`;
+        });
+
+        nextButton.addEventListener('click', function() {
+            degrees += 45; // Inverte para sentido anti-horário
+            box.style.transform = `perspective(1000px) rotateY(${degrees}deg)`;
+        });
+
+        let zoomedIn = false;
+        const image = document.querySelector('.box img');
+
+        image.addEventListener('click', function() {
+            if (zoomedIn) {
+                // Reduz o tamanho da imagem de volta ao tamanho original
+                image.style.transform = 'scale(1)';
+            } else {
+                // Aumenta o tamanho da imagem em 1.5 vezes (zoom)
+                image.style.transform = 'scale(1.5)';
+            }
+
+            // Inverte o estado de zoom (true para false, false para true)
+            zoomedIn = !zoomedIn;
+        });
+    </script>
+</body>
+</html>
